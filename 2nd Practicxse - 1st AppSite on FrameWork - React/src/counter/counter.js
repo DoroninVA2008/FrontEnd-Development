@@ -1,27 +1,30 @@
-import { createSlice } from '@reduxjs/toolkit'
+// counter/counter.js
+import { createSlice } from '@reduxjs/toolkit';
 
-export const counterSlice = createSlice({
+const initialState = { value: 0 };
+
+const counterSlice = createSlice({
   name: 'counter',
-  initialState: {
-    value: 0,
-  },
+  initialState,
   reducers: {
-    increment: (state) => {
-      state.value += 1
+    increment: (state, action) => {
+      const step = typeof action.payload === 'number' ? action.payload : 1;
+      state.value += step;
     },
-    decrement: (state) => {
-      state.value -= 1
-    },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload
+    decrement: (state, action) => {
+      const step = typeof action.payload === 'number' ? action.payload : 1;
+      state.value -= step;
     },
     reset: (state) => {
       state.value = 0;
-    }
+    },
+    setValue: (state, action) => {
+      state.value = action.payload;
+    },
   },
-})
+});
 
-// Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount, reset } = counterSlice.actions
+export const { increment, decrement, reset, setValue } = counterSlice.actions;
+export default counterSlice.reducer;
 
-export default counterSlice.reducer
+

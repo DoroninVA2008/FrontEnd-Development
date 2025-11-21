@@ -25,11 +25,9 @@ const CounterWithStep = () => {
     setStep(Number(e.target.value));
   };
 
-  // Определяем, какая кнопка должна быть заблокирована
   const isIncrementDisabled = step >= 0 ? count >= 1000 : count <= -1000;
   const isDecrementDisabled = step >= 0 ? count <= -1000 : count >= 1000;
 
-  // Определяем порядок кнопок в зависимости от знака шага
   const buttons = [
     {
       onClick: step >= 0 ? handleDecrement : handleIncrement,

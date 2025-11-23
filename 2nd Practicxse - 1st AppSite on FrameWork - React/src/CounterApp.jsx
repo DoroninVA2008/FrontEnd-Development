@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { reset, increment, decrement, setValue } from './counter/counter.js';
+import { reset, setValue } from './counter/counter.js';
+import CounterComponent from './components/appcounter.jsx';
+import InputComponent from './components/appinput.jsx';
+import ButtonsComponent from './components/appbuttons.jsx';
 
-const CounterWithStep = () => {
+function CounterWithStep() {
   const [step, setStep] = useState(1);
   const count = useSelector(state => state.counter.value); 
   const dispatch = useDispatch();
@@ -51,36 +54,11 @@ const CounterWithStep = () => {
 
   return (
     <div style={{ textAlign: 'center', padding: '20px' }}>
-      <h2>Счётчик: {count}</h2>
-
-      <div style={{ marginBottom: '15px' }}>
-        <label>
-          Шаг изменения:
-          <input
-            type="number"
-            value={step}
-            onChange={handleStepChange}
-            min="-100"
-            max="+100"
-            style={{ marginLeft: '10px', padding: '5px' }}
-          />
-        </label>
-      </div>
-
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
-        {buttons.map(button => (
-          <button
-            key={button.key}
-            onClick={button.onClick}
-            disabled={button.disabled}
-            style={{ padding: '10px 15px' }}
-          >
-            {button.label}
-          </button>
-        ))}
-      </div>
+      <CounterComponent count={count} />
+      <InputComponent step={step} onStepChange={handleStepChange} />
+      <ButtonsComponent buttons={buttons} />
     </div>
   );
-};
+}
 
 export default CounterWithStep;

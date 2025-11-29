@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ButtonsComponent({buttons}) {
+export function AppButtons({buttons}) {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
       {buttons.map(button => (
@@ -16,5 +16,3 @@ function ButtonsComponent({buttons}) {
     </div>
   );
 }
-
-export default ButtonsComponent;

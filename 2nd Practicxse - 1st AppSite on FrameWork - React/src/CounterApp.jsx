@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { reset, setValue } from './counter/counter.js';
-import CounterComponent from './components/appcounter.jsx';
-import InputComponent from './components/appinput.jsx';
-import ButtonsComponent from './components/appbuttons.jsx';
+import { AppCounter } from './components/app-counter.jsx';
+import { AppInput } from './components/app-input.jsx';
+import { AppButtons } from './components/app-buttons.jsx';
 
 function CounterWithStep() {
   const [step, setStep] = useState(1);
@@ -24,8 +24,8 @@ function CounterWithStep() {
     dispatch(reset());
   };
 
-  const handleStepChange = (e) => {
-    setStep(Number(e.target.value));
+  const handleStepChange = (newStep) => {
+    setStep(newStep);
   };
 
   const isIncrementDisabled = step >= 0 ? count >= 1000 : count <= -1000;
@@ -54,9 +54,9 @@ function CounterWithStep() {
 
   return (
     <div style={{ textAlign: 'center', padding: '20px' }}>
-      <CounterComponent count={count} />
-      <InputComponent step={step} onStepChange={handleStepChange} />
-      <ButtonsComponent buttons={buttons} />
+      <AppCounter count={count} />
+      <AppInput step={step} onStepChange={handleStepChange} />
+      <AppButtons buttons={buttons} />
     </div>
   );
 }

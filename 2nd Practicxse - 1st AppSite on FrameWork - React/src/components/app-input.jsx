@@ -1,6 +1,10 @@
 import React from 'react';
 
-function InputComponent({step, onStepChange}) {
+export function AppInput({ step, onStepChange }) {
+  const handleStepChange = (e) => {
+    const newStep = Number(e.target.value);
+    onStepChange(newStep);
+  };
   return (
     <div style={{ marginBottom: '15px' }}>
       <label>
@@ -8,15 +12,12 @@ function InputComponent({step, onStepChange}) {
         <input
           type="number"
           value={step}
-          onChange={onStepChange}
+          onChange={handleStepChange}
           min="-100"
-          max="+100"
+          max="100"
           style={{ marginLeft: '10px', padding: '5px' }}
         />
       </label>
     </div>
   );
 }
-
-export default InputComponent;
-

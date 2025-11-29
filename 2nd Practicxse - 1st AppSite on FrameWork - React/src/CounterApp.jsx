@@ -7,7 +7,7 @@ import { AppButtons } from './components/app-buttons.jsx';
 
 function CounterWithStep() {
   const [step, setStep] = useState(1);
-  const count = useSelector(state => state.counter.value); 
+  const count = useSelector(state => state.counter.value);
   const dispatch = useDispatch();
 
   const handleIncrement = () => {
@@ -26,6 +26,11 @@ function CounterWithStep() {
 
   const handleStepChange = (newStep) => {
     setStep(newStep);
+  };
+
+  const onStepChange = {
+    value: step,
+    onChange: handleStepChange,
   };
 
   const isIncrementDisabled = step >= 0 ? count >= 1000 : count <= -1000;
@@ -55,7 +60,7 @@ function CounterWithStep() {
   return (
     <div style={{ textAlign: 'center', padding: '20px' }}>
       <AppCounter count={count} />
-      <AppInput step={step} onStepChange={handleStepChange} />
+      <AppInput step={onStepChange} />
       <AppButtons buttons={buttons} />
     </div>
   );

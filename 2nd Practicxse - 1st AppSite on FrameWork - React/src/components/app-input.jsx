@@ -1,9 +1,10 @@
 import React from 'react';
 
-export function AppInput({ step, onStepChange }) {
-  const handleStepChange = (e) => {
+export function AppInput({ step: onStepChange }) {
+  const { value, onChange } = onStepChange;
+  const handleInputChange = (e) => {
     const newStep = Number(e.target.value);
-    onStepChange(newStep);
+    onChange(newStep);
   };
   return (
     <div style={{ marginBottom: '15px' }}>
@@ -11,8 +12,8 @@ export function AppInput({ step, onStepChange }) {
         Шаг изменения:
         <input
           type="number"
-          value={step}
-          onChange={handleStepChange}
+          value={value}
+          onChange={handleInputChange} 
           min="-100"
           max="100"
           style={{ marginLeft: '10px', padding: '5px' }}

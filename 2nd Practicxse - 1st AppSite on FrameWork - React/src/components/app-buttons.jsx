@@ -1,16 +1,16 @@
 import React from 'react';
 
-export function AppButtons({buttons}) {
+export function AppButtons({ buttons }) {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
-      {buttons.map(button => (
+      {buttons.map(({ key, onClick, disabled, label }) => (
         <button
-          key={button.key}
-          onClick={button.onClick}
-          disabled={button.disabled}
+          key={key}
+          onClick={onClick}
+          disabled={disabled}
           style={{ padding: '10px 15px' }}
         >
-          {button.label}
+          {typeof label === 'function' ? label() : label}
         </button>
       ))}
     </div>

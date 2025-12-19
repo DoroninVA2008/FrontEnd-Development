@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export function AppInput({ step: onStepChange }) {
-  const { value, onChange } = onStepChange;
+export function AppInput() {
+  const [value, onChange] = useState(1);
+  const [min] = useState(-100);
+  const [max] = useState(100);
+  
   const handleInputChange = (e) => {
-    const newStep = Number(e.target.value);
-    onChange(newStep);
+    let newChange = Number(e.target.value);
+    
+    if (newChange < min) newChange = min;
+    if (newChange > max) newChange = max;
+    
+    onChange(newChange);
   };
+  
   return (
     <div style={{ marginBottom: '15px' }}>
       <label>
@@ -13,9 +21,9 @@ export function AppInput({ step: onStepChange }) {
         <input
           type="number"
           value={value}
-          onChange={handleInputChange} 
-          min="-100"
-          max="100"
+          onChange={handleInputChange}
+          min={min}
+          max={max}
           style={{ marginLeft: '10px', padding: '5px' }}
         />
       </label>

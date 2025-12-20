@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export function AppButtons({ buttons }) {
+export function AppButtons({ buttons, step }) {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
       {buttons.map(({ key, onClick, disabled, label }) => (
-        <button
+        <button  
           key={key}
           onClick={onClick}
           disabled={disabled}
           style={{ padding: '10px 15px' }}
         >
-          {typeof label === 'function' ? label() : label}
+          {typeof label === 'function' ? label(step) : label}
         </button>
       ))}
     </div>

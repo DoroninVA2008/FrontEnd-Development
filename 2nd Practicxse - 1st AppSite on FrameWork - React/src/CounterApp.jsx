@@ -28,10 +28,10 @@ function CounterWithStep() {
     setStep(newStep);
   };
 
-  // const onStepChange = {
-  //   value: step,
-  //   onChange: handleStepChange,
-  // };
+  const buttonStepChange = {
+     value: step,
+     onChange: handleStepChange,
+   };
 
   const isIncrementDisabled = step >= 0 ? count >= 1000 : count <= -1000;
   const isDecrementDisabled = step >= 0 ? count <= -1000 : count >= 1000;
@@ -60,8 +60,8 @@ function CounterWithStep() {
   return (
     <div style={{ textAlign: 'center', padding: '20px' }}>
       <AppCounter count={count} />
-      <AppInput />
-      <AppButtons buttons={buttons} step={step} setStep={setStep}/>
+      <AppInput  />
+      <AppButtons buttons={buttons} step={step} />
     </div>
   );
 }
